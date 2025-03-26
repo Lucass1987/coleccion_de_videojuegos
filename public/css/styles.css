@@ -1,0 +1,75 @@
+body {
+
+    padding: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: hsl(0, 0%, 100%);
+    width: 1024px;
+    margin: 0 auto;
+}
+
+
+h1 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    gap: 0.25rem;
+
+}
+
+
+input {
+    width: 100%;
+    border-radius: 0.5rem;
+}
+
+button {
+    background: white;
+    border: none;
+    cursor: pointer;
+}
+
+svg {
+    width: 1.5rem;
+
+}
+
+.game-result {
+    display: flex;
+
+    gap: 3rem;
+    margin-bottom: 1rem;
+}
+
+
+.title-result,
+.title-no-result,
+.results {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+/* Header styles */
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+}
+
+/* Main content styles */
+main {
+    padding: 20px;
+}
+
+/* Footer styles */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}

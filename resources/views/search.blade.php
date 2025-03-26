@@ -1,22 +1,33 @@
-@include('header')
+{{-- @include('header') --}}
+@extends('main')
 
-Buscador
+@section('title', 'Buscador')
+
+@section('content')
+
+<h1> Buscador </h1>
+
+
 <form>
     <input type="text" name="search">
 
-    <button type="submit">Buscar juego</button>
+    <button type="submit">@include('lupa')</button>
 
 </form>
 
 @if ($title)
-    <div>Resultados para: {{ $title }}</div>
+    <div class="title-result">Resultados para: {{ $title }}</div>
 @endif
 
-<div>{{ $count }} Resultados</div>
-@forelse ($games as $game)
-    <a href="/juegos/{{ $game->identifier }}">
+@if ($count)
+    <div class="results">{{ $count }} Resultados</div>
+@endif
+
+
+@foreach ($games as $game)
+    <a class="game-result" href="/juegos/{{ $game->identifier }}">
         <img src="{{ $game->cover?->getUrl() }}">
-        <h2>{{ $game->attributes['name'] }}</h2>
+        <div><h2>{{ $game->attributes['name'] }}</h2>
 
         @if ($game->platforms)
             <div>
@@ -31,13 +42,17 @@ Buscador
         @if ($game->attributes['first_release_date'] ?? null)
             <div>{{ $game->attributes['first_release_date']->format('d-m-Y') }}</div>
         @endif
+        </div>
     </a>
+@endforeach
 
-@empty
-    <div>No hay resultados</div>
-@endforelse
+@if ($title && $count == 0)
+    <div class="title-no-result">No hay resultados</div>
+@endif
 
 
 @dump($games)
 
-@include('footer')
+@endsection
+
+{{-- @include('footer') --}}
