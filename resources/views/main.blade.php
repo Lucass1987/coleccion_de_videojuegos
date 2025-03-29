@@ -8,14 +8,15 @@
             @yield('title', 'Juegos')
         </title> 
 
-        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">       
+        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">    
+    
     </head>
     <body>
         
 
         @yield('content')
 
-        <div>© Lucas 2025</div>
+        <div class=footer>© Lucas 2025</div>
 
     </body>
 </html>

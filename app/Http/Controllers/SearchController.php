@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use MarcReichel\IGDBLaravel\Models\Game;
 
+use function Laravel\Prompts\form;
+
 class SearchController
 {
     public function index(Request $request)
@@ -18,6 +20,7 @@ class SearchController
         if ($title) {
             //buscame los juegos por title y devuelveme el total
             $count = Game::search($title)->count();
+
             // buscame los juegos 
             $games = Game::search($title)
                 // paginador 
@@ -26,6 +29,7 @@ class SearchController
                 ->with(['cover', 'platforms'])
                 //damelo damelo, damelo ya
                 ->get();
+
         }
         //muestrame la plantilla search, con los datos ..... ...  
         return view('search', ['title' => $title, 'games' => $games ?? [], 'count' => $count ?? null]);

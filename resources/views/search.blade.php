@@ -5,28 +5,30 @@
 
 @section('content')
 
-<h1> Buscador </h1>
+<h1 class=titulo> Buscador </h1>
+
+<a class="breadcrumb" href="/">Volver al inicio</a>
 
 
-<form>
-    <input type="text" name="search">
+<form  class="buscador">
+    <input class=buscadorinput type="text" name="search">
 
-    <button type="submit">@include('lupa')</button>
+    <button type="submit" class="botoncol"> Buscar</button>
 
 </form>
+<hr>
 
-@if ($title)
-    <div class="title-result">Resultados para: {{ $title }}</div>
-@endif
 
 @if ($count)
-    <div class="results">{{ $count }} Resultados</div>
+    <div class="results"> Mostrando {{ $count }} resultados para: {{ $title }}</div>
+    @else
+    <div class="title-result">No hay resultados</div>
 @endif
 
 
 @foreach ($games as $game)
     <a class="game-result" href="/juegos/{{ $game->identifier }}">
-        <img src="{{ $game->cover?->getUrl() }}">
+        <img style="witdh: 90px;height: 105px"  src="{{ $game->cover?->getUrl() ?? 'https://us.123rf.com/450wm/koblizeek/koblizeek2208/koblizeek220800128/190320173-sin-s%C3%ADmbolo-de-vector-de-imagen-falta-el-icono-disponible-no-hay-galer%C3%ADa-para-este-marcador-de.jpg' }}">
         <div><h2>{{ $game->attributes['name'] }}</h2>
 
         @if ($game->platforms)
@@ -46,12 +48,8 @@
     </a>
 @endforeach
 
-@if ($title && $count == 0)
-    <div class="title-no-result">No hay resultados</div>
-@endif
 
 
-@dump($games)
 
 @endsection
 
