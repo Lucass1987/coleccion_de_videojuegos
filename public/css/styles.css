@@ -71,7 +71,7 @@ summary{
 
 
 
-.puntuacion { display: inline-block; padding: 10px 20px; font-size: 18px; font-weight: bold; color: rgb(255, 249, 249); border-radius: 5px; text-align: center; }
+.puntuacion { display: inline-block; padding: 10px 20px; font-size: 18px; font-weight: bold; color: rgba(0, 0, 0, 0.897); border-radius: 5px; text-align: center; }
 
 
 
@@ -126,7 +126,8 @@ svg {
 }
 
 .botoncol:hover {
-    background-color: #4CAF50;
+    background-color: #388E80;
+  color: white;
    
 }
 
@@ -173,3 +174,11 @@ main {
 }
 
 ::marker{ display:none; } summary{ list-style: none }
+
+
+.paginador {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    align-items: center;
+}

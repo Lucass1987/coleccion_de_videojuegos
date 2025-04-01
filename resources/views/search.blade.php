@@ -28,7 +28,10 @@
 
 @foreach ($games as $game)
     <a class="game-result" href="/juegos/{{ $game->identifier }}">
-        <img style="witdh: 90px;height: 105px"  src="{{ $game->cover?->getUrl() ?? 'https://us.123rf.com/450wm/koblizeek/koblizeek2208/koblizeek220800128/190320173-sin-s%C3%ADmbolo-de-vector-de-imagen-falta-el-icono-disponible-no-hay-galer%C3%ADa-para-este-marcador-de.jpg' }}">
+        <img
+            style="witdh: 90px;height: 105px" 
+            src="{{ $game->cover?->getUrl() ?? asset('sincaratula.jpg') }}"
+        >
         <div><h2>{{ $game->attributes['name'] }}</h2>
 
         @if ($game->platforms)
@@ -48,8 +51,30 @@
     </a>
 @endforeach
 
+<div class='paginador'>
+@if ($page > 0)
+
+<a href="/search?search={{ Request::get('search') }}&page={{$page-1}}">
+    <
+</a>
+
+@endif
+
+@if ($lastpage != 1)
+
+<span> {{$page+1}} </span>
+
+@endif
 
 
+@if ($page < $lastpage-1)
+<a href="/search?search={{ Request::get('search') }}&page={{$page+1}}">
+    >
+</a>
+    
+@endif
+</div>
+   
 
 @endsection
 

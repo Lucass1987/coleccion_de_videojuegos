@@ -15,6 +15,7 @@ class SearchController
         $title = $request->query('search');
         //coge la query entera y dame el valor page y guarda en la variable page
         $page = $request->query('page');
+        $count = null;
 
         // si title tiene valor
         if ($title) {
@@ -29,9 +30,14 @@ class SearchController
                 ->with(['cover', 'platforms'])
                 //damelo damelo, damelo ya
                 ->get();
-
         }
         //muestrame la plantilla search, con los datos ..... ...  
-        return view('search', ['title' => $title, 'games' => $games ?? [], 'count' => $count ?? null]);
+        return view('search', [
+            'title' => $title,
+            'games' => $games ?? [],
+            'count' => $count ?? null,
+            'page' => $page ?? 0,
+            'lastpage' => $count ? ceil($count / 10) : 1,
+        ]);
     }
 }

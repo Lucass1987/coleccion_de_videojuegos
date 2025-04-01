@@ -7,10 +7,14 @@
     {{-- titulo --}}
     <h1 style="margin-top: 1em" class=titulo>{{ $game->attributes['name'] }}</h1>
     <a class="breadcrumb" href="/">Volver al inicio</a>
+    <a class="breadcrumb" href="/search">Volver al buscador</a>
     <div class='inline'>
         {{-- portada --}}
-
-        <img src="{{ $game->cover->getUrl('cover_big') }}">
+@if ($game->cover)
+        <img class=portada src="{{ $game->cover->getUrl('cover_big') }}">
+@else
+            <img  style="witdh: 90px;height: 105px"  src="{{ asset('sincaratula.jpg')}}">
+@endif
         <div>
 
 
@@ -20,7 +24,7 @@
 
                 {{-- nota --}}
                  @if ($game->attributes['aggregated_rating'] ?? null)
-                    <div class=puntuacion>{{ $game->attributes['aggregated_rating']}}</div>
+                    <div class=puntuacion>{{ round($game->attributes['aggregated_rating'],2)}}</div>
                  @else
                     <div>Sin puntuación</div>   
                 @endif
@@ -36,6 +40,7 @@
 
                 <form method="post">
                     @csrf
+                    <input type="hidden" name="titulo" value="{{ $game->attributes['name'] }}">
                     @if ($game->platforms)
                         @foreach ($game->platforms as $platform)
                             <label class=caja>
